@@ -68,6 +68,15 @@
 \RequirePackage{setspace}
 % Needed to manage fonts
 \RequirePackage[quiet]{fontspec}
+
+\usepackage{xeCJK}
+  \xeCJKsetup{%
+    CJKspace=true,% % true이면 띄어쓰기 사용. 중국어, 일어는 필요 없을수도
+    % CJKmath=true,%  % true면 math environment 안에서 CJK 글자 사용
+    CJKecglue={}%   % Western과 CJK 사이의 공백 지정: {}로 간격을 없앰
+  }
+
+
 % To support LaTeX quoting style
 \defaultfontfeatures{Ligatures=TeX}
 % Needed to manage math fonts
@@ -161,7 +170,7 @@
 %                Configuration for fonts
 %-------------------------------------------------------------------------------
 % Set the FontAwesome font to be up-to-date.
-\newfontfamily\FA[Path=\@fontdir]{FontAwesome}
+\setfontfamily\FA[Path=\@fontdir]{FontAwesome}
 % Set font for header (default is Roboto)
 \newfontfamily\headerfont[
   Path=\@fontdir,
@@ -182,6 +191,12 @@
 \newcommand*{\footerfont}{\sourcesanspro}
 \newcommand*{\bodyfont}{\sourcesanspro}
 \newcommand*{\bodyfontlight}{\sourcesansprolight}
+
+\setCJKmainfont[
+  Path=\@fontdir,
+  UprightFont=*-Thin,
+  BoldFont=*-Medium,
+]{NotoSansKR}
 
 %-------------------------------------------------------------------------------
 %                Configuration for styles
