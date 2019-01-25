@@ -97,6 +97,7 @@
   pdfsubject={},
   pdfkeywords={}
 }
+\RequirePackage{color, colortbl}
 
 
 %-------------------------------------------------------------------------------
@@ -213,6 +214,12 @@
 \newcommand*{\sectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
 \newcommand*{\subsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\scshape\textcolor{text}{#1}}}
 \newcommand*{\paragraphstyle}{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text}}
+
+% For elements of project
+\newcommand*{\projectsizestyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\slshape\color{darktext} #1}}
+\newcommand*{\projecttitlestyle}[1]{{\fontsize{12pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\projectdatestyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\slshape\color{darktext} #1}}
+\newcommand*{\projectheaderstyle}[1]{{\fontsize{8pt}{1em}\bodyfont\bfseries\color{awesome} #1}}
 
 % For elements of entry
 \newcommand*{\entrytitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
@@ -602,12 +609,38 @@
 }
 
 % Define an environment for cventry
+\newenvironment{cvprojects}{%
+  \vspace{\acvSectionContentTopSkip}
+  \begin{center}
+}{%
+  \end{center}
+}
+
+% Usage: \cvproject{<title>}{date}{<size>}{description}{position}{screenshot}
+\newcommand*{\cvproject}[6]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{2.5cm} L{\textwidth - 2.5cm}}
+	  \multicolumn{2}{L{\textwidth}}{\projecttitlestyle{#1}} \\
+      \rowcolor[gray]{0.95}
+      \projectheaderstyle{규모} & \projectsizestyle{#3}, \projectdatestyle{#2} \\
+      \projectheaderstyle{설명} & \descriptionstyle{#4} \\
+      \rowcolor[gray]{0.95}
+	  \projectheaderstyle{역할/문제 해결} & \\
+      \rowcolor[gray]{0.95}
+	  \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}} \\
+    #6
+  \end{tabular*}%
+}
+% Define an environment for cventry
 \newenvironment{cventries}{%
   \vspace{\acvSectionContentTopSkip}
   \begin{center}
 }{%
   \end{center}
 }
+
 % Define an entry of cv information
 % Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
 \newcommand*{\cventry}[5]{%
