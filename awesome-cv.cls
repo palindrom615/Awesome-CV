@@ -73,7 +73,8 @@
   \xeCJKsetup{%
     CJKspace=true,% % true이면 띄어쓰기 사용. 중국어, 일어는 필요 없을수도
     % CJKmath=true,%  % true면 math environment 안에서 CJK 글자 사용
-    CJKecglue={}%   % Western과 CJK 사이의 공백 지정: {}로 간격을 없앰
+    CJKecglue={},%   % Western과 CJK 사이의 공백 지정: {}로 간격을 없앰
+    CJKglue={}
   }
 
 
@@ -195,8 +196,8 @@
 
 \setCJKmainfont[
   Path=\@fontdir,
-  UprightFont=*-Thin,
-  BoldFont=*-Medium,
+  UprightFont=*-light,
+  BoldFont=*-Regular,
 ]{NotoSansKR}
 
 %-------------------------------------------------------------------------------
@@ -226,7 +227,7 @@
 \newcommand*{\entrypositionstyle}[1]{{\fontsize{8pt}{1em}\bodyfont\scshape\color{graytext} #1}}
 \newcommand*{\entrydatestyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
 \newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
-\newcommand*{\descriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text} #1}}
+\newcommand*{\descriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\upshape\color{text} #1}}
 
 % For elements of subentry
 \newcommand*{\subentrytitlestyle}[1]{{\fontsize{8pt}{1em}\bodyfont\mdseries\color{graytext} #1}}
@@ -417,8 +418,8 @@
 \newcommand{\acvHeaderAfterQuoteSkip}{5mm}
 
 % Others
-\newcommand{\acvSectionTopSkip}{3mm}
-\newcommand{\acvSectionContentTopSkip}{2.5mm}
+\newcommand{\acvSectionTopSkip}{7mm}
+\newcommand{\acvSectionContentTopSkip}{5mm}
 
 
 %-------------------------------------------------------------------------------
@@ -619,8 +620,8 @@
 % Usage: \cvproject{<title>}{date}{<size>}{description}{position}{screenshot}
 \newcommand*{\cvproject}[6]{%
   \vspace{-2.0mm}
-  \setlength\tabcolsep{0pt}
-  \setlength{\extrarowheight}{0pt}
+  \setlength\tabcolsep{0em}
+  \setlength{\extrarowheight}{0.5em}
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{2.5cm} L{\textwidth - 2.5cm}}
 	  \multicolumn{2}{L{\textwidth}}{\projecttitlestyle{#1}} \\
       \rowcolor[gray]{0.95}
@@ -719,13 +720,11 @@
 % Define an environment for cvitems(for cventry)
 \newenvironment{cvitems}{%
   \vspace{-4.0mm}
-  \begin{justify}
   \begin{itemize}[leftmargin=2ex, nosep, noitemsep]
-    \setlength{\parskip}{0pt}
+    \setlength{\parskip}{0.5em}
     \renewcommand{\labelitemi}{\bullet}
 }{%
   \end{itemize}
-  \end{justify}
   \vspace{-4.0mm}
 }
 
